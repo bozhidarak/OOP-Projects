@@ -141,7 +141,7 @@ void SWUniverse::get_strongest_jedi(const String& planet_name) {
 
 void SWUniverse::get_youngest_jedi(const String& planet_name, rankofJedi jedi_rank) {
 	size_t planetscount = planets.get_size();
-	Jedi youngest = planets[0].get_citizens()[0];
+	Jedi youngest;
 
 	for (size_t i = 0; i < planetscount; i++)
 	{
@@ -149,7 +149,9 @@ void SWUniverse::get_youngest_jedi(const String& planet_name, rankofJedi jedi_ra
 			youngest = planets[i].youngest_jedi(jedi_rank);
 		}
 	}
-	std::cout << "Youngest jedi: " << std::endl;
-	std::cout << "Name: " << youngest.get_name() << std::endl;
-	std::cout << "Power: " << youngest.get_power() << std::endl; //nz dali da doizkarwam infoto
+	if (youngest.get_age() != -1) {
+		std::cout << "Youngest jedi: " << std::endl;
+		std::cout << "Name: " << youngest.get_name() << std::endl;
+		std::cout << "Power: " << youngest.get_power() << std::endl; //nz dali da doizkarwam infoto
+	}
 }
