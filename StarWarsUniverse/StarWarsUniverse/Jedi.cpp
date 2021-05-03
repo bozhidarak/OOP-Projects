@@ -11,7 +11,7 @@ void Jedi::copy(const Jedi& other) {
 
 Jedi::Jedi() {
 	rank = rankofJedi::YOUNGLING;
-	age = 0;
+	age = -1;
 	power = 0;
 }
 
