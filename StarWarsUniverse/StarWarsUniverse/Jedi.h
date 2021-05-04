@@ -35,11 +35,33 @@ public:
 	void set_colorofsaber(const String& _colorofsaber) { colorofSaber = _colorofsaber;}
 	void set_jedipower(const double _power) { power = _power; }
 
-	bool operator<(const Jedi& other);
-
-	size_t mymin(size_t num1, size_t num2);
-	//void promote(double multiplier);
-	//void demote(double multiplier);
-
+	friend std::ostream& operator<<(std::ostream& os, const Jedi& other)
+	{
+		os <<"Name: " <<other.name<<std::endl;
+		os << "Age: "<<other.age<<std::endl;
+		os << "Color of saber: " << other.colorofSaber<<std::endl;
+		os << "Power: " << other.power<<std::endl;
+		os << "Rank: ";
+		switch (other.rank)
+		{
+		case rankofJedi::INITIATE: os<<"Initiate"<<std::endl;
+			break;
+		case rankofJedi::PADAWAN: os << "Padwan" << std::endl;
+			break;
+		case rankofJedi::KNIGHT_ASPIRANT: os << "Knight - Aspirant" << std::endl;
+			break;
+		case rankofJedi::KNIGHT:os << "Knight" << std::endl;
+			break;
+		case rankofJedi::MASTER:os << "Master" << std::endl;
+			break;
+		case rankofJedi::BATTLE_MASTER:os << "Battle - Master" << std::endl;
+			break;
+		case rankofJedi::GRAND_MASTER:os << "Grand - Master" << std::endl;
+			break;
+		default: os << "Invalid rank"<<std::endl;
+			break;
+		}
+		return os;
+	}
 
 };

@@ -30,5 +30,7 @@ public:
 		return out;
 	}
 
+	bool operator<(const String& other);
+
 
 };

@@ -140,7 +140,7 @@ Jedi& Planet::strongest_citizen() {
 	}
 	return citizens[indexofstrongest];
 }
-
+/*
 Jedi& Planet::youngest_jedi(rankofJedi rank) {
 	size_t citizenscount = citizens.get_size();
 	size_t indexofyoungest = 0;
@@ -167,5 +167,68 @@ Jedi& Planet::youngest_jedi(rankofJedi rank) {
 		}
 	}
 	return youngest;
+
+}*/
+
+Jedi Planet::youngest_jedi(rankofJedi rank,Jedi youngest,size_t indexofyoungest) {
+
+	size_t citizenscount = citizens.get_size();
+	Jedi temp = youngest;
+
+	if (indexofyoungest + 1 == citizenscount)
+		return temp;
+
+	for (size_t i = (indexofyoungest + 1); i < citizenscount; i++)
+	{
+		if (citizens[i].get_rankofjedi() == rank) {
+			if (citizens[i].get_age() < temp.get_age())
+			{
+				temp = citizens[i];
+			}
+			else if (citizens[i].get_age() == temp.get_age())
+			{
+				if (citizens[i].get_name() < temp.get_name()) temp = citizens[i];
+			}
+		}
+	}
+	return temp;
+}
+
+//String& Planet::mostusedsaber(rankofJedi rank) {
+//	size_t citizenscount = citizens.get_size();
+//	size_t counterofcolor = 0;
+//
+//	for (size_t i = 0; i < citizenscount; i++)
+//	{
+//		
+//	}
+//}
+
+void Planet::print() {
+	size_t citizenscount = citizens.get_size();
+	std::cout << get_name() << std::endl;
+	
+	for (size_t i = 0; i < citizenscount - 1; i++) {
+		for (size_t j = i + 1; j < citizenscount; j++) {
+			if (citizens[i].get_rankofjedi() < citizens[j].get_rankofjedi())
+			{
+				Jedi temp = citizens[i];
+				citizens[i] = citizens[j];
+				citizens[j] = temp;
+			}
+			else if (citizens[i].get_rankofjedi() == citizens[j].get_rankofjedi()) {
+				if (citizens[j].get_name() < citizens[i].get_name()) {
+
+					Jedi temp = citizens[i];
+					citizens[i] = citizens[j];
+					citizens[j] = temp;
+				}
+			}
+		}
+	}
+
+	for (size_t i = 0; i < citizenscount; i++) {
+		std::cout << citizens[i] << std::endl;
+	}
 
 }

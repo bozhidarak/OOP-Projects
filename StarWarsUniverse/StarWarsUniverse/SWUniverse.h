@@ -5,9 +5,8 @@
 class SWUniverse {
 private:
 	Vector<Planet> planets;
-	//size_t count;
+
 public:
-	//SWUniverse();
 	Vector<Planet> get_planets() { return planets; }
 	void add_planet(const String planet_name);
 	void create_jedi(const String& planet_name, const String jedi_name, const rankofJedi rank, int jedi_age, const String saber_color, double jedi_strength);
@@ -16,4 +15,7 @@ public:
 	void demote_jedi(const String& jedi_name, double multiplier); 
 	void get_strongest_jedi(const String& planet_name);
 	void get_youngest_jedi(const String& planet_name, rankofJedi jedi_rank);
+	//String& get_most_used_saber_color(const String& planet_name, rankofJedi jedi_rank);
+	//oshte edna funkciq s color
+	void print(const String planet_name);
 };

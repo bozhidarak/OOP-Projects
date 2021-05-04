@@ -100,3 +100,23 @@ bool String::operator==(const String& other) {
 	return !strcmp(str, other.str);
 }
 
+bool String::operator<(const String& other) {
+
+	size_t shortsize;
+	if (size > other.size) shortsize = other.size;
+	else shortsize = size;
+	for (size_t i = 0; i < shortsize; i++) {
+		if (str[i] < other.str[i])
+		{
+			return true;
+		}
+		else if (str[i] > other.str[i])
+		{
+			return false;
+		}
+	}
+	if (size < other.size) return true;
+	else return false;
+
+}
+
