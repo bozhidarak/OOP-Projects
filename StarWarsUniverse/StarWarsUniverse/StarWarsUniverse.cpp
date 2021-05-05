@@ -24,8 +24,8 @@ int main()
 	std::cout << sw.get_planets()[0].get_citizens()[0].get_name();
 	std::cout << std::endl;
 
-	sw.create_jedi("zemq", "Ivan", rankofJedi::KNIGHT, 50, "blue", 3.2);
-	sw.create_jedi("zemq", "Kolio", rankofJedi::KNIGHT, 30, "bluegreen", 5);
+	sw.create_jedi("zemq", "Ivan", rankofJedi::KNIGHT, 50, "red", 3.2);
+	sw.create_jedi("zemq", "Kolio", rankofJedi::KNIGHT, 30, "blue", 5);
 	sw.create_jedi("zemq", "Petar", rankofJedi::KNIGHT, 80, "purple", 5);
 	std::cout << "Check on remove_jedi: ";
 	std::cout << sw.get_planets()[0].get_citizens().get_size() << std::endl;
@@ -33,10 +33,10 @@ int main()
 	//sw.remove_jedi("Kolio", "zemq");//raboti
 	std::cout << sw.get_planets()[0].get_citizens().get_size() << std::endl;
 
-	sw.promote_jedi("Ivan", 10);// raboti da proverq wse pak dali vuv for imam promenliva ili funkciq (i<temp)
+	//sw.promote_jedi("Ivan", 10);// raboti da proverq wse pak dali vuv for imam promenliva ili funkciq (i<temp)
 	std::cout << sw.get_planets()[0].get_citizens()[1].get_power() << std::endl;
 
-	sw.demote_jedi("Petar", 0.1);//raboti da proverrq
+	//sw.demote_jedi("Petar", 0.1);//raboti da proverrq
 	std::cout << "eho" << std::endl;
 	std::cout << sw.get_planets()[0].get_citizens()[2].get_name() << std::endl;
 	std::cout << sw.get_planets()[0].get_citizens()[2].get_power() << std::endl;
@@ -68,6 +68,14 @@ int main()
 	sw.get_youngest_jedi("zemq", rankofJedi::KNIGHT);//raboti no da proverq
 	std::cout << std::endl;
 	sw.print("zemq");//raboti
+	//std::cout << std::endl;
+	//sw.create_jedi("zemq", "Ivan1", rankofJedi::KNIGHT, 50, "redd", 3.2);
+	//sw.create_jedi("zemq", "Ivan2", rankofJedi::KNIGHT, 50, "redd", 3.2);
+	//sw.create_jedi("zemq", "Ivan3", rankofJedi::KNIGHT, 50, "redd", 3.2);
+	std::cout<<sw.get_most_used_saber_color("zemq", rankofJedi::KNIGHT)<<std::endl;//raboti, da pomislq dali moje bez powtoreniq na cwetowete
+
+
+
 
 
 

@@ -194,15 +194,76 @@ Jedi Planet::youngest_jedi(rankofJedi rank,Jedi youngest,size_t indexofyoungest)
 	return temp;
 }
 
-//String& Planet::mostusedsaber(rankofJedi rank) {
-//	size_t citizenscount = citizens.get_size();
-//	size_t counterofcolor = 0;
+String Planet::mostusedsaber(rankofJedi rank) {
+	size_t citizenscount = citizens.get_size();
+	Vector<int> colorcounter;
+	size_t temp = citizenscount;
+	while (temp != 0)
+	{
+		colorcounter.pushback(0);
+		temp--;
+	}
+
+	for (size_t i = 0; i < citizenscount - 1; i++)
+	{
+		if (citizens[i].get_rankofjedi() == rank) {
+			colorcounter[i] = 1;//izdisha tuk 
+		}
+		else colorcounter[i] = 0;
+		for (size_t j = i + 1; j < citizenscount; j++)
+		{
+			if (citizens[j].get_rankofjedi() == rank) {
+				if (citizens[i].get_colorofsaber() == citizens[j].get_colorofsaber()) {
+					colorcounter[i]++;
+				}
+			}
+		}
+	}
+	size_t colorsize = colorcounter.get_size();
+	int max = 0;
+	size_t indexofcolor = 0;
+	for (size_t i = 0; i < colorsize; i++)
+	{
+		if (colorcounter[i] > max) {
+			max = colorcounter[i];
+			indexofcolor = i;
+		}
+	}
+	return citizens[indexofcolor].get_colorofsaber();
+}
 //
-//	for (size_t i = 0; i < citizenscount; i++)
+//String Planet::mostusedsaber() {
+//	size_t citizenscount = citizens.get_size();
+//	Vector<int> colorcounter;
+//	size_t temp = citizenscount;
+//	while (temp != 0)
 //	{
-//		
+//		colorcounter.pushback(0);
+//		temp--;
 //	}
+//
+//	for (size_t i = 0; i < citizenscount - 1; i++)
+//	{   colorcounter[i] = 1;
+//		for (size_t j = i + 1; j < citizenscount; j++)
+//		{
+//				if (citizens[i].get_colorofsaber() == citizens[j].get_colorofsaber()) {
+//					colorcounter[i]++;
+//				}
+//		}
+//	}
+//	size_t colorsize = colorcounter.get_size();
+//	int max = 0;
+//	size_t indexofcolor = 0;
+//	for (size_t i = 0; i < colorsize; i++)
+//	{
+//		if (colorcounter[i] > max && citizens[i].get_rankofjedi() == rankofJedi::GRAND_MASTER) {//ima dupka i ne tr da e taka
+//			max = colorcounter[i];
+//			indexofcolor = i;
+//		}
+//	}
+//	return citizens[indexofcolor].get_colorofsaber();
 //}
+
 
 void Planet::print() {
 	size_t citizenscount = citizens.get_size();

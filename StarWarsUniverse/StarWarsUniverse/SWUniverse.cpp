@@ -161,24 +161,31 @@ void SWUniverse::get_youngest_jedi(const String& planet_name, rankofJedi jedi_ra
 	std::cout << "Age: " << youngest.get_age() << std::endl;
 }
 
-//String& SWUniverse::get_most_used_saber_color(const String& planet_name, rankofJedi jedi_rank) {
+String SWUniverse::get_most_used_saber_color(const String& planet_name, rankofJedi jedi_rank) {
+	size_t planetscount = planets.get_size();
+	String mostusedcolor;
+
+	for (size_t i = 0; i < planetscount; i++) {
+		if (planets[i].get_name() == planet_name) 
+		{
+			mostusedcolor = planets[i].mostusedsaber(jedi_rank);
+		}
+	}
+	return mostusedcolor;
+}
+//
+//String SWUniverse:: get_most_used_saber_color(const String& planet_name) {
 //	size_t planetscount = planets.get_size();
 //	String mostusedcolor;
 //
 //	for (size_t i = 0; i < planetscount; i++) {
-//		if (planets[i].get_name() == planet_name) {
-//		
-//			size_t citizenscount = planets[i].get_citizens().get_size();
-//			for (size_t j = 0; j < citizenscount; j++)
-//			{
-//				if (planets[i].get_citizens()[j].get_rankofjedi() == jedi_rank)
-//				{
-//				
-//				}
-//			}
-//
+//		if (planets[i].get_name() == planet_name)
+//		{
+//			mostusedcolor = planets[i].mostusedsaber();
 //		}
 //	}
+//	return mostusedcolor;
+//
 //}
 
 void SWUniverse:: print(const String planet_name) {

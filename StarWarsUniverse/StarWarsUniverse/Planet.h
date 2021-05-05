@@ -22,7 +22,8 @@ public:
 	void demote_citizen(const String& name, double multiplier);
 	Jedi& strongest_citizen();
 	Jedi youngest_jedi(rankofJedi rank,Jedi youngest,size_t indexofyoungest);
-	//String& mostusedsaber(rankofJedi rank);
+	String mostusedsaber(rankofJedi rank);
+//	String mostusedsaber();
 	void print();
 
 };
