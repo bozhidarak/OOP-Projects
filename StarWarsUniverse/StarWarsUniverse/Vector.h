@@ -7,13 +7,14 @@ private:
 	T* arr;
 	size_t capacity;
 	size_t size;
-	void copy(const Vector& other)
+	
+	void copy(const Vector<T>& other)
 	{
 		size = other.size;
 		capacity = other.capacity;
 		arr = new T[capacity];//WHY??!?!?!?!? 
-		for (size_t i = 0; i < size; i++)//do capacity eventuaolno
-			arr[i] = other.arr[i]; //teq warningi shte gi eba
+		for (size_t i = 0; i < size; i++)
+			arr[i] = other.arr[i];
 	}
 	void destroy()
 	{

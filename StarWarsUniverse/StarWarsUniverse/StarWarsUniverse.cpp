@@ -6,16 +6,6 @@
 
 int main()
 {
-	String color = "green";
-	//std::cout << color;
-	Jedi j;
-	j.set_rankofJedi(rankofJedi::INITIATE);
-	j.set_colorofsaber(color);
-	Planet pl;
-	pl.set_planetname("zemQ");
-
-	pl.add_citizen("gosho", j.get_rankofjedi(), 12, j.get_colorofsaber(), 10.89);
-
 	SWUniverse sw;
 	sw.add_planet("zemq");//raboti
 
@@ -26,18 +16,26 @@ int main()
 
 	sw.create_jedi("zemq", "Ivan", rankofJedi::KNIGHT, 50, "red", 3.2);
 	sw.create_jedi("zemq", "Kolio", rankofJedi::KNIGHT, 30, "blue", 5);
-	sw.create_jedi("zemq", "Petar", rankofJedi::KNIGHT, 80, "purple", 5);
+	sw.create_jedi("zemq", "Petar", rankofJedi::MASTER, 80, "purple", 500.1);
+	sw.create_jedi("zemq", "John", rankofJedi::GRAND_MASTER, 500, "red", 30.2);
+	sw.create_jedi("zemq", "Ivan2", rankofJedi::KNIGHT, 1, "red", 1000.4);
+	sw.create_jedi("zemq", "Ivan3", rankofJedi::KNIGHT, 2, "red", 1000.4);
+
 	std::cout << "Check on remove_jedi: ";
 	std::cout << sw.get_planets()[0].get_citizens().get_size() << std::endl;
 
-	//sw.remove_jedi("Kolio", "zemq");//raboti
+	sw.remove_jedi("Kolio", "zemq");//raboti
+	//sw.remove_jedi("Ivan2", "zemq");
 	std::cout << sw.get_planets()[0].get_citizens().get_size() << std::endl;
+	std::cout << sw.get_planets()[0].get_citizens()[3].get_name() << std::endl;
 
-	//sw.promote_jedi("Ivan", 10);// raboti da proverq wse pak dali vuv for imam promenliva ili funkciq (i<temp)
+	std::cout << "Promote: " << std::endl;
+	sw.promote_jedi("Ivan", 10);// raboti
 	std::cout << sw.get_planets()[0].get_citizens()[1].get_power() << std::endl;
+	std::cout << (sw.get_planets()[0].get_citizens()[1].get_rankofjedi() == rankofJedi::MASTER) << std::endl;
 
-	//sw.demote_jedi("Petar", 0.1);//raboti da proverrq
-	std::cout << "eho" << std::endl;
+	std::cout << "Demote: " << std::endl;
+	sw.demote_jedi("Petar", 0.1);//raboti
 	std::cout << sw.get_planets()[0].get_citizens()[2].get_name() << std::endl;
 	std::cout << sw.get_planets()[0].get_citizens()[2].get_power() << std::endl;
 	switch (sw.get_planets()[0].get_citizens()[2].get_rankofjedi())
@@ -63,19 +61,29 @@ int main()
 	}
 	std::cout << std::endl;
 	std::cout << std::endl;
-	sw.get_strongest_jedi("zemq");//raboti no da proverq
+
+	//Strongest Jedi:
+	sw.get_strongest_jedi("zemq");//raboti
 	std::cout << std::endl;
-	sw.get_youngest_jedi("zemq", rankofJedi::KNIGHT);//raboti no da proverq
+
+	//Youngest Jedi:
+	sw.get_youngest_jedi("zemq", rankofJedi::KNIGHT);//raboti
 	std::cout << std::endl;
+
+	std::cout << "Print:" << std::endl;
 	sw.print("zemq");//raboti
-	//std::cout << std::endl;
-	//sw.create_jedi("zemq", "Ivan1", rankofJedi::KNIGHT, 50, "redd", 3.2);
-	//sw.create_jedi("zemq", "Ivan2", rankofJedi::KNIGHT, 50, "redd", 3.2);
-	//sw.create_jedi("zemq", "Ivan3", rankofJedi::KNIGHT, 50, "redd", 3.2);
+	std::cout << std::endl;
+
+	sw.create_jedi("zemq", "Ivan1", rankofJedi::KNIGHT, 50, "red", 3.2);
+	sw.create_jedi("zemq", "Ivan4", rankofJedi::KNIGHT, 50, "red", 3.2);
+	sw.create_jedi("zemq", "Ivan5", rankofJedi::KNIGHT, 50, "redd", 3.2);
+
 	std::cout<<sw.get_most_used_saber_color("zemq", rankofJedi::KNIGHT)<<std::endl;//raboti, da pomislq dali moje bez powtoreniq na cwetowete
 
 
+//validacia ako se dostupwa jedi koito ne sushtestwuwa t.e ima 3 jedii i az dostypwam 4-ti
 
+	//dali tr G4 na wseki klass
 
 
 

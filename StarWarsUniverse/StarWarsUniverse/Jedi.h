@@ -31,7 +31,7 @@ public:
 
 	void set_jediname(const String& _name) { name = _name; }
 	void set_rankofJedi(const rankofJedi _rank) { rank = _rank; }
-	void set_jediage(int _age) { age = _age; } // da proverq kude tr da imam const i &
+	void set_jediage(int _age) { age = _age; }
 	void set_colorofsaber(const String& _colorofsaber) { colorofSaber = _colorofsaber;}
 	void set_jedipower(const double _power) { power = _power; }
 

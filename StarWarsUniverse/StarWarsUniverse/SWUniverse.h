@@ -1,6 +1,5 @@
 #pragma once
 #include "Planet.h"
-//da proverq include dali sa oki
 
 class SWUniverse {
 private:
@@ -15,7 +14,6 @@ public:
 	void demote_jedi(const String& jedi_name, double multiplier); 
 	void get_strongest_jedi(const String& planet_name);
 	void get_youngest_jedi(const String& planet_name, rankofJedi jedi_rank);
-	String get_most_used_saber_color(const String& planet_name, rankofJedi jedi_rank);// trqbwat li mi &
-	//String get_most_used_saber_color(const String& planet_name);
+	String get_most_used_saber_color(const String& planet_name, rankofJedi jedi_rank);
 	void print(const String planet_name);
 };

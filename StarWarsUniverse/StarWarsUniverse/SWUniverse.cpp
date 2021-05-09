@@ -1,11 +1,10 @@
 #include "SWUniverse.h"
 
 //SWUniverse::SWUniverse() {
-//	count = 0;
+//	
 //}
 
-//da naprawq samo s imeto
-void SWUniverse::add_planet(const String planet_name) {//trqbwa li & 
+void SWUniverse::add_planet(const String planet_name) {
 
 	Planet pl;
 	pl.set_planetname(planet_name);
@@ -17,9 +16,11 @@ void SWUniverse::create_jedi(const String& planet_name, const String jedi_name, 
 {
 	bool flag_planetname = false;
 	bool flag_jediname = false;
-	size_t planets_size = planets.get_size();
+	size_t planets_size = planets.get_size();//count
+
 	for (size_t i = 0; i < planets_size; i++)
-		if (planets[i].get_name() == planet_name) flag_planetname = true;
+		{ if (planets[i].get_name() == planet_name) flag_planetname = true; }
+
 	if (!flag_planetname)
 	{
 		std::cout << "There is no such planet." << std::endl;
@@ -28,12 +29,15 @@ void SWUniverse::create_jedi(const String& planet_name, const String jedi_name, 
 	}
 	for (size_t i = 0; i < planets_size; i++)
 	{
-		for (size_t j = 0; j < planets[i].get_citizens().get_size(); j++)//ako nqma jedi kakwo stawa
+		size_t citizenscount = planets[i].get_citizens().get_size();
+		for (size_t j = 0; j < citizenscount; j++)//ako nqma jedi validacia
+		{
 			if (planets[i].get_citizens()[j].get_name() == jedi_name)
 				flag_jediname = true;
+		}
 		if (flag_jediname)
 		{
-			std::cout << "There is an alredy excisting jedi with this name.";
+			std::cout << "There is an alredy excisting jedi with this name." << std::endl;
 			return;
 		}
 	}
@@ -51,8 +55,8 @@ void SWUniverse::remove_jedi(const String& jedi_name, const String& planet_name)
 	{
 		if (planets[i].get_name() == planet_name)
 		{
-			
-			for (size_t j = 0; j < planets[i].get_citizens().get_size(); j++)
+			size_t citizenscount = planets[i].get_citizens().get_size();
+			for (size_t j = 0; j < citizenscount; j++)
 			{
 				if (planets[i].get_citizens()[j].get_name() == jedi_name)
 				{
@@ -76,7 +80,8 @@ void SWUniverse::promote_jedi(const String& jedi_name, double multiplier) {
 
 	for (size_t i = 0; i < planets_size; i++)
 	{
-		for (size_t j = 0; j < planets[i].get_citizens().get_size(); j++)
+		size_t citizenscount = planets[i].get_citizens().get_size();
+		for (size_t j = 0; j < citizenscount; j++)
 		{
 			if (planets[i].get_citizens()[j].get_name() == jedi_name)
 			{
@@ -93,7 +98,8 @@ void SWUniverse::demote_jedi(const String& jedi_name, double multiplier) {
 
 	for (size_t i = 0; i < planets_size; i++)
 	{
-		for (size_t j = 0; j < planets[i].get_citizens().get_size(); j++)
+		size_t citizenscount = planets[i].get_citizens().get_size();
+		for (size_t j = 0; j < citizenscount; j++)
 		{
 			if (planets[i].get_citizens()[j].get_name() == jedi_name)
 			{
@@ -107,7 +113,8 @@ void SWUniverse::demote_jedi(const String& jedi_name, double multiplier) {
 
 void SWUniverse::get_strongest_jedi(const String& planet_name) {
 	size_t planetscount = planets.get_size();
-	Jedi strongest = planets[0].get_citizens()[0];
+	//Jedi strongest = planets[0].get_citizens()[0];
+	Jedi strongest;
 	for (size_t i = 0; i < planetscount; i++)
 	{
 		if (planets[i].get_name() == planet_name)
@@ -117,8 +124,7 @@ void SWUniverse::get_strongest_jedi(const String& planet_name) {
 		}
 	}
 	std::cout << "Strongest jedi: " << std::endl;
-	std::cout <<"Name: "<< strongest.get_name() << std::endl;
-	std::cout << "Power: " << strongest.get_power() << std::endl; //nz dali da doizkarwam infoto
+	std::cout << strongest << std::endl;
 }
 
 void SWUniverse::get_youngest_jedi(const String& planet_name, rankofJedi jedi_rank) {
@@ -157,8 +163,7 @@ void SWUniverse::get_youngest_jedi(const String& planet_name, rankofJedi jedi_ra
 		}
 	}
 	std::cout << "Youngest Jedi:"<<std::endl;
-	std::cout << "Name: " << youngest.get_name() << std::endl;
-	std::cout << "Age: " << youngest.get_age() << std::endl;
+	std::cout << youngest << std::endl;
 }
 
 String SWUniverse::get_most_used_saber_color(const String& planet_name, rankofJedi jedi_rank) {
@@ -173,20 +178,6 @@ String SWUniverse::get_most_used_saber_color(const String& planet_name, rankofJe
 	}
 	return mostusedcolor;
 }
-//
-//String SWUniverse:: get_most_used_saber_color(const String& planet_name) {
-//	size_t planetscount = planets.get_size();
-//	String mostusedcolor;
-//
-//	for (size_t i = 0; i < planetscount; i++) {
-//		if (planets[i].get_name() == planet_name)
-//		{
-//			mostusedcolor = planets[i].mostusedsaber();
-//		}
-//	}
-//	return mostusedcolor;
-//
-//}
 
 void SWUniverse:: print(const String planet_name) {
 	size_t planetscount = planets.get_size();
