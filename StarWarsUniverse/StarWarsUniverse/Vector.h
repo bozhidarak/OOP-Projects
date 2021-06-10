@@ -35,6 +35,7 @@ private:
 public:
 	size_t get_capacity() const { return capacity; }
 	size_t get_size() const { return size; }
+	
 
 	Vector()
 	{

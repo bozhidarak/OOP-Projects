@@ -1,6 +1,7 @@
 #pragma once
 #include "Jedi.h"
 #include "Vector.h"
+#include<fstream>
 
 
 class Planet {
@@ -20,6 +21,10 @@ public:
 	Jedi& strongest_citizen();
 	Jedi youngest_jedi(rankofJedi rank,Jedi youngest,size_t indexofyoungest);
 	String mostusedsaber(rankofJedi rank);
+	String mostUsedColor();
 	void print();
+	void citizensort();
 
+	//added
+	//void saveToFile(std::ofstream& outFile);
 };

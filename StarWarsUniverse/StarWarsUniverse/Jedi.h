@@ -35,6 +35,7 @@ public:
 	void set_colorofsaber(const String& _colorofsaber) { colorofSaber = _colorofsaber;}
 	void set_jedipower(const double _power) { power = _power; }
 
+
 	friend std::ostream& operator<<(std::ostream& os, const Jedi& other)
 	{
 		os <<"Name: " <<other.name<<std::endl;
@@ -44,6 +45,8 @@ public:
 		os << "Rank: ";
 		switch (other.rank)
 		{
+		case rankofJedi::YOUNGLING: os << "Youngling" << std::endl;
+			break;
 		case rankofJedi::INITIATE: os<<"Initiate"<<std::endl;
 			break;
 		case rankofJedi::PADAWAN: os << "Padwan" << std::endl;

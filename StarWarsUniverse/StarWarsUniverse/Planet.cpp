@@ -1,14 +1,14 @@
 #include "Planet.h"
 
 Planet::Planet() {
-	
+
 	//nqmam drugo tuk zashtoto stirnga i vektora si imat defoltni konstruktori
 }
 
 Planet::Planet(const String _name, const Vector<Jedi> _citizens, size_t _jedicount) {
 	name = _name;
 	citizens = _citizens;
-	
+
 }
 
 Vector<Jedi>& Planet::add_citizen(const String& jedi_name, const rankofJedi rank, int jedi_age, const String& saber_color, double jedi_strength) {
@@ -40,15 +40,10 @@ void Planet::promote_citizen(const String& name, double multiplier) {
 	{
 		if (citizens[j].get_name() == name)
 		{
-			if (multiplier < 0)
-			{
-				std::cout << "The multiplier needs to be a positive number." << std::endl;
-				return;//validacia
-			}
 			if (citizens[j].get_rankofjedi() == rankofJedi::GRAND_MASTER)
 			{
-				std::cout << "You can not promote rank Grand Master." << std::endl;
-				return;//tuk sushto
+				std::cout << "You can not promote rank Grand Master. Enter command again." << std::endl;
+				return;
 			}
 			switch (citizens[j].get_rankofjedi())
 			{
@@ -88,15 +83,10 @@ void Planet::demote_citizen(const String& name, double multiplier) {
 
 	for (size_t i = 0; i < temp; i++) {
 		if (citizens[i].get_name() == name) {
-			if (multiplier < 0)
-			{
-				std::cout << "The multiplier needs to be a positive number." << std::endl;
-				return;//validation
-			}
 			if (citizens[i].get_rankofjedi() == rankofJedi::YOUNGLING)
 			{
-				std::cout << "You can not demote rank Youngling." << std::endl;
-				return;//tuk sushto
+				std::cout << "You can not demote rank Youngling. Enter command again." << std::endl;
+				return;
 			}
 			switch (citizens[i].get_rankofjedi())
 			{
@@ -139,7 +129,7 @@ Jedi& Planet::strongest_citizen() {
 	return citizens[indexofstrongest];
 }
 
-Jedi Planet::youngest_jedi(rankofJedi rank,Jedi youngest,size_t indexofyoungest) {
+Jedi Planet::youngest_jedi(rankofJedi rank, Jedi youngest, size_t indexofyoungest) {
 
 	size_t citizenscount = citizens.get_size();
 	Jedi temp = youngest;
@@ -176,7 +166,7 @@ String Planet::mostusedsaber(rankofJedi rank) {
 	for (size_t i = 0; i < citizenscount - 1; i++)
 	{
 		if (citizens[i].get_rankofjedi() == rank) {
-			colorcounter[i] = 1; 
+			colorcounter[i] = 1;
 		}
 		for (size_t j = i + 1; j < citizenscount; j++)
 		{
@@ -200,10 +190,54 @@ String Planet::mostusedsaber(rankofJedi rank) {
 	return citizens[indexofcolor].get_colorofsaber();
 }
 
+String Planet::mostUsedColor() {
+	size_t citizenscount = citizens.get_size();
+	Vector<int> colorcounter;
+	Vector<bool> foundgrandmaster;
+	size_t temp = citizenscount;
+	//bool foundGrandMaster = false;
+	while (temp != 0)
+	{
+		colorcounter.pushback(1);
+		foundgrandmaster.pushback(0);
+		temp--;
+	}
+
+	for (size_t i = 0; i < citizenscount - 1; i++)
+	{
+		if (citizens[i].get_rankofjedi() == rankofJedi::GRAND_MASTER)
+		{
+			foundgrandmaster[i] = 1;
+		}
+		for (size_t j = i + 1; j < citizenscount; j++)
+		{
+			if (citizens[i].get_colorofsaber() == citizens[j].get_colorofsaber()) {
+				colorcounter[i]++;
+				if (citizens[j].get_rankofjedi() == rankofJedi::GRAND_MASTER) // && foundgrandmaster[i] = 0
+				{
+					foundgrandmaster[i] = 1;
+				}
+
+			}
+		}
+	}
+	size_t colorsize = citizenscount;//da mahna
+	int max = 0;
+	size_t indexofcolor = 0;
+	for (size_t i = 0; i < colorsize; i++)
+	{
+		if (colorcounter[i] > max && foundgrandmaster[i] == 1) {
+			max = colorcounter[i];
+			indexofcolor = i;
+		}
+	}
+	return citizens[indexofcolor].get_colorofsaber();
+}
+
 void Planet::print() {
 	size_t citizenscount = citizens.get_size();
 	std::cout << get_name() << std::endl;
-	
+
 	for (size_t i = 0; i < citizenscount - 1; i++) {
 		for (size_t j = i + 1; j < citizenscount; j++) {
 			if (citizens[i].get_rankofjedi() > citizens[j].get_rankofjedi())
@@ -226,5 +260,30 @@ void Planet::print() {
 	for (size_t i = 0; i < citizenscount; i++) {
 		std::cout << citizens[i] << std::endl;
 	}
+	return;
+}
+
+void Planet::citizensort() {
+	size_t citizenscount = citizens.get_size();
+	for (size_t i = 0; i < citizenscount - 1; i++)
+	{
+		for (size_t j =  i + 1; j < citizenscount; j++)
+		{
+			if (citizens[j].get_name() < citizens[i].get_name())
+			{
+				Jedi temp = citizens[i];
+				citizens[i] = citizens[j];
+				citizens[j] = temp;
+			}
+		}
+	}
+
 
 }
+//
+//void Planet::saveToFile(std::ofstream& outFile) {
+//	outFile << this->name << " " << this->citizens.get_size() << " ";
+//	for (int i = 0; i < this->citizens.get_size(); i++) {
+//
+//	}
+//}

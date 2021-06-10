@@ -12,7 +12,7 @@
 
 void String::copy(const String& other) {
 	size = other.size;
-	str = new char[size];
+	str = new char[size + 1];
 	strcpy(str, other.str);//da go naprawq moee i strlen
 }
 
@@ -79,18 +79,33 @@ void String::myconcat(const String& other) {
 	resize(strlen(str) + strlen(other.str));
 	strcat(str, other.str);
 }*/
-/*
+
 void String::pushback(const char elem) {
-	char* buff = new char[size + 1];
+	char* buff = new char[size + 2];
 	for (size_t i = 0; i < size; i++)
 		buff[i] = str[i];
-	delete[] str;
 	buff[size] = elem;
-	str = new char[size + 1];
+	size++;
+	buff[size] = '\0';
+	delete[] str;
+//	str = new char[size + 1];
 	str = buff;
-}*/
+}
 
 /*
+* 
+		T* buff = new T[size + 1];
+		if (size >= capacity)
+			resize();
+		for (size_t i = 0; i < size; i++)
+			buff[i] = arr[i];
+		buff[size] = elem;
+		size++;
+		delete[] arr;
+		arr = buff;
+* 
+* 
+* 
 String& String::operator+=(const String& other) {
 	myconcat(other);
 	return *this;
@@ -117,6 +132,13 @@ bool String::operator<(const String& other) {
 	}
 	if (size < other.size) return true;
 	else return false;
-
 }
+
+void String::set_string(const char* _str) {
+	//destroy();
+	str = new char[strlen(_str) + 1];
+	strcpy(str, _str);
+	size = strlen(_str);
+}
+
 

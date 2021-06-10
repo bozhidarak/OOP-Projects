@@ -33,3 +33,5 @@ Jedi& Jedi::operator=(const Jedi& other) { //nqmam destroy zashtoto String sam s
 	}
 	return *this;
 }
+
+
